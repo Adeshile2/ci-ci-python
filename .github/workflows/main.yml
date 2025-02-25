@@ -1,14 +1,40 @@
-name: Hello-world
-
 on:
   push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Do something
-        run: echo "Hello from GitHub Actions!"
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-test.txt
+
+    - name: Run backend service
+      run: |
+          cd backend
+          python app.py &
+          sleep 5  # Wait for the backend to start
+
+    - name: Run frontend service
+      run: |
+          cd frontend
+          python app.py &
+          sleep 5  # Wait for the frontend to start
+
+    - name: Run tests
+      run: |
+          pytest tests/test_services.py -v
