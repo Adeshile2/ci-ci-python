@@ -1,4 +1,3 @@
-import requests
 
 # Define the base URLs for the frontend and backend services
 FRONTEND_URL = "http://localhost:5001"
