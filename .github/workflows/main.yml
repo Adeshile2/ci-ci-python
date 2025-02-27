@@ -22,11 +22,11 @@ jobs:
         working-directory: ./Terraform
 
       - name: Terraform apply
-        run: terrafrom plan -var-file="dev.tfvars"
+        run: terrafrom plan
         working-directory: ./Terraform
 
       - name: Terraform Apply
-        run: terraform apply -var-file="dev.tfvars"
+        run: terraform apply
         working-directory: ./Terraform
 
       # Retrieve the ECR repository name from Terraform output
