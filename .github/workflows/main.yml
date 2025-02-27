@@ -22,7 +22,7 @@ jobs:
         working-directory: ./Terraform
 
       - name: Terraform apply
-        run: terrafrom plan
+        run: terraform plan
         working-directory: ./Terraform
 
       - name: Terraform Apply
