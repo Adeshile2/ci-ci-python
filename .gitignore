@@ -1,3 +1,2 @@
-/Terraform/dev.tfvars
-
+*.tfvars
 .terraform/
