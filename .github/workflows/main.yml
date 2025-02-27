@@ -25,11 +25,11 @@ jobs:
         working-directory: ./Terraform
 
       - name: Terraform Plan
-        run: terraform plan -var="aws_access_key=$AWS_ACCESS_KEY" -var="aws_secret_key=$AWS_SECRET_KEY"
+        run: terraform plan -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}"
         working-directory: ./Terraform
 
       - name: Terraform Apply
-        run: terraform apply -var="aws_access_key=$AWS_ACCESS_KEY" -var="aws_secret_key=$AWS_SECRET_KEY" -auto-approve
+        run: terraform apply -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" -var="aws_secret_key=${{ secrets.AWS_SECRET_KEY }}" -auto-approve
         working-directory: ./Terraform
 
       # Retrieve the ECR repository name from Terraform output
