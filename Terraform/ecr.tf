@@ -14,8 +14,8 @@ resource "aws_secretsmanager_secret" "env_secrets" {
 resource "aws_secretsmanager_secret_version" "env_secrets_version" {
   secret_id = aws_secretsmanager_secret.env_secrets.id
   secret_string = jsonencode({
-    AWS_ACCESS_KEY    =  secrets.AWS_ACCESS_KEY 
-    AWS_SECRET_KEY =  secrets.AWS_SECRET_KEY 
+    AWS_ACCESS_KEY    =  var.aws_access_key
+    AWS_SECRET_KEY =  var.aws_secret_key
     
   })
 }
@@ -33,7 +33,6 @@ resource "aws_ecr_repository" "my_ecr_repo" {
     scan_on_push = true
   }
 }
-
 
 
 
