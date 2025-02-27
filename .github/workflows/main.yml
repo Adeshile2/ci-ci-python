@@ -37,6 +37,12 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -var="aws_access_key=$AWS_ACCESS_KEY_ID" -var="aws_secret_key=$AWS_SECRET_ACCESS_KEY" -auto-approve
         working-directory: ./Terraform
+      - name: Get Terraform outputs
+        id: tf_outputs
+        run: |
+          echo "ECR_REPOSITORY_NAME=$(terraform output -raw ecr_repository_name)" >> $GITHUB_ENV
+          echo "ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url)" >> $GITHUB_ENV
+
 
       - name: Login to Amazon ECR
         id: login-ecr
