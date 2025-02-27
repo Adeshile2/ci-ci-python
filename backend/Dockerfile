@@ -7,8 +7,7 @@ COPY ../requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Optionally copy the rest of your application code if needed
-COPY . .
+COPY ../app/ .
 
 CMD ["python3", "app.py"]
-
 
