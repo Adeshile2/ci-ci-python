@@ -48,7 +48,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY_NAME: ${{ env.ECR_REPOSITORY_NAME }}
           ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }}
-          IMAGE_TAG: latest-python-build
+          IMAGE_TAG: latest
         run: |
           docker build . --file Dockerfile --tag $ECR_REPOSITORY_NAME:$IMAGE_TAG
           docker tag $ECR_REPOSITORY_NAME:$IMAGE_TAG $ECR_REPOSITORY_URL:$IMAGE_TAG
