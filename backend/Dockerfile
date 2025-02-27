@@ -1,14 +1,20 @@
+# Use the official Python image
 FROM python:3.9-slim
 
-# Copy the requirements.txt from the root (build context) into /app
-COPY ../requirements.txt .
-
-RUN pip install -r requirements.txt
-
-# Optionally copy the rest of your application code if needed
-COPY app/ ./app
-
+# Set the working directory
 WORKDIR /app
 
-CMD ["python3", "app.py"]
+# Copy the requirements file from the build context
+COPY requirements.txt .
 
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code from the build context
+COPY app/ ./app
+
+# Set the working directory to /app (if needed)
+WORKDIR /app
+
+# Run the application
+CMD ["python3", "app.py"]
