@@ -117,7 +117,9 @@ jobs:
           python app.py &
           sleep 5  # Wait for the frontend to start
 
-      - name: Run tests
+      - name: Install and run tests
         run: |
           pip install pytest
+          pip install requests
           pytest test_services.py -v
+
