@@ -72,7 +72,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY_NAME: ${{ env.ECR_REPOSITORY_NAME }}
           ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }}
-          IMAGE_TAG: latest
+          IMAGE_TAG: backend-latest
         run: |
           docker build ./backend --file ./backend/Dockerfile --tag $ECR_REPOSITORY_NAME:$IMAGE_TAG
           docker tag $ECR_REPOSITORY_NAME:$IMAGE_TAG $ECR_REPOSITORY_URL:$IMAGE_TAG
@@ -83,7 +83,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY_NAME: ${{ env.ECR_REPOSITORY_NAME }}
           ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }}
-          IMAGE_TAG: latest
+          IMAGE_TAG: frontend-latest
         run: |
           docker build ./frontend --file ./frontend/Dockerfile --tag $ECR_REPOSITORY_NAME:$IMAGE_TAG
           docker tag $ECR_REPOSITORY_NAME:$IMAGE_TAG $ECR_REPOSITORY_URL:$IMAGE_TAG
