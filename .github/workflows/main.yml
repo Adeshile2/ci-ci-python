@@ -118,8 +118,23 @@ jobs:
           sleep 5  # Wait for the frontend to start
 
       - name: Install and run tests
+             
         run: |
-          pip install pytest
-          pip install requests
+          # Install Python dependencies
+          python -m pip install --upgrade pip
+          pip install pytest requests
+      
+          # Start the backend service
+          cd backend
+          python app.py &
+          sleep 5  # Wait for the backend to start
+      
+          # Start the frontend service
+          cd ../frontend
+          python app.py &
+          sleep 5  # Wait for the frontend to start
+      
+          # Run the tests
+          cd ..
           pytest test_services.py -v
 
